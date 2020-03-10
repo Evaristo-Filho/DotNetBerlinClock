@@ -9,14 +9,14 @@ namespace BerlinClock
     {
         public string convertTime(string aTime)
         {
-            int timeInSeconds=0;
+            int timeInSeconds = 0;
             try
             {
                 timeInSeconds = timeToSeconds(DateTime.Parse(aTime));
             }
             catch
             {
-                timeInSeconds= 86402; // represents a day plus 2 seconds, since 24:00:00, since the hour 24:00 ins invalid.
+                timeInSeconds = 86402; // represents a day plus 2 seconds, since 24:00:00, since the hour 24:00 in invalid.
             }
 
             var result = generateLayout(timeInSeconds);
@@ -41,7 +41,7 @@ namespace BerlinClock
         }
 
         /// <summary>
-        /// Generates Berlim clock representantion
+        /// Generates Berlin clock representantion
         /// </summary>
         /// <param name="time">time in seconds</param>
         private StringBuilder generateLayout(int time)
@@ -64,18 +64,15 @@ namespace BerlinClock
         }
 
         /// <summary>
-        /// Evaluates row for Berlim clock, much like a minimum commom multiple algorithm.
+        /// Evaluates row for Berlin clock, much like a minimum commom multiple algorithm.
         /// </summary>
         /// <param name="time">remaining time to be evaluated</param>
         /// <param name="interval">Time interval wich is represented by rows</param>
         /// <param name="cols">number of "cels" in each row</param>
         /// <param name="result">The result of evaluation after the step</param>
+        /// <param name="newLine">Generates or not a new line after evaluation</param>
         private void EvaluateRow(ref int time, int interval, int cols, StringBuilder result, bool newLine = true)
         {
-            /*
-            1s |  5H   |   1H |    5M       |   1M 
-            O\r\nRRRR\r\nRRRO\r\nYYRYYRYYRYY\r\nYYYY
-           */
             if (interval == 1 && time % 2 == 0)
             {
                 result.Append("Y");
@@ -97,7 +94,7 @@ namespace BerlinClock
                     {
                         if (i <= lamps)
                         {
-                            if ((i % 3 != 0 && cols == 11) || time < 60 && time!=1)
+                            if ((i % 3 != 0 && cols == 11) || time < 60 && time != 1)
                                 result.Append("Y");
                             else
                                 result.Append("R");
