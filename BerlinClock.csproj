@@ -71,7 +71,11 @@
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="C:\Users\evari\source\repos\Clock\Clock.csproj">
+    <Folder Include="Domain\" />
+    <Folder Include="Test\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Domain\Clock\Clock.csproj">
       <Project>{6a3cadb2-e5d4-4a54-8c36-22f498154892}</Project>
       <Name>Clock</Name>
     </ProjectReference>
